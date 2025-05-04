@@ -1,0 +1,29 @@
+.footer {
+  background-color: #01112C;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+  border-top: 4px solid #008F8C;
+  width: 100%; 
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+  position: relative; /* Permite ajustes de posicionamento */
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .footer {
+    padding: 0.5rem; /* Reduz o padding em telas menores */
+    font-size: 0.9rem; /* Ajusta o tamanho da fonte para telas pequenas */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 0.5rem; /* Mantém o padding reduzido */
+    font-size: 0.8rem; /* Reduz ainda mais o tamanho da fonte */
+    text-align: center; /* Garante centralização em telas muito pequenas */
+  }
+}

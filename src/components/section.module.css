@@ -1,0 +1,129 @@
+.section {
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.title, .subtitle, .context, .welcome {
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+}
+
+.context {
+  font-size: 1.3rem;
+}
+
+.text {
+  font-size: 1rem;
+  left: 20px;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: flex-end; /* Alinha a imagem à direita */
+}
+
+.image {
+  width: 100%; /* Garante que a imagem seja responsiva */
+  max-width: 300px; /* Limita o tamanho máximo da imagem */
+  border-radius: 1rem; /* Bordas arredondadas */
+  object-fit: cover; /* Ajusta a imagem para caber no contêiner */
+  margin-top: 20px; /* Espaçamento superior */
+}
+
+.list {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.listItem {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Responsividade - Empilha em telas menores */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-md-8,
+  .col-md-4 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+
+  .image {
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.welcome {
+  animation-name: fadeIn;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  font-size: 2rem;
+  
+}
+
+.section, body {
+  background-image: linear-gradient(white, rgb(167, 241, 241));
+}
+
+.text-center {
+  text-align: center; /* Centraliza o botão */
+ 
+}
+button {
+  background-color: #99aedd; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  border: none; /* Remove a borda padrão */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  font-size: 16px; /* Tamanho da fonte do botão */
+}
+
+.cardGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
