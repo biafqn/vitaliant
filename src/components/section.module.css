@@ -22,22 +22,21 @@
 
 .text {
   font-size: 1rem;
-  left: 20px;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
 .imageContainer {
   display: flex;
-  justify-content: flex-end; /* Alinha a imagem à direita */
+  justify-content: flex-end;
 }
 
 .image {
-  width: 100%; /* Garante que a imagem seja responsiva */
-  max-width: 300px; /* Limita o tamanho máximo da imagem */
-  border-radius: 1rem; /* Bordas arredondadas */
-  object-fit: cover; /* Ajusta a imagem para caber no contêiner */
-  margin-top: 20px; /* Espaçamento superior */
+  width: 100%;
+  max-width: 300px;
+  border-radius: 1rem;
+  object-fit: cover;
+  margin-top: 20px;
 }
 
 .list {
@@ -50,7 +49,7 @@
   color: #333;
 }
 
-/* Responsividade - Empilha em telas menores */
+/* Responsividade */
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
@@ -61,6 +60,23 @@
   .col-md-4 {
     width: 100%;
     max-width: 100%;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
+
+  .image {
+    max-width: 100%;
+    margin-top: 1rem;
   }
 }
 
@@ -92,13 +108,16 @@
   }
 }
 
-.welcome {
+.fadeIn {
   animation-name: fadeIn;
   animation-duration: 1.5s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+}
+
+.welcome {
   font-size: 2rem;
-  
+  animation: fadeIn;
 }
 
 .section, body {
@@ -106,17 +125,7 @@
 }
 
 .text-center {
-  text-align: center; /* Centraliza o botão */
- 
-}
-button {
-  background-color: #99aedd; /* Cor de fundo do botão */
-  color: white; /* Cor do texto do botão */
-  padding: 10px 20px; /* Espaçamento interno do botão */
-  border: none; /* Remove a borda padrão */
-  border-radius: 5px; /* Bordas arredondadas */
-  cursor: pointer; /* Muda o cursor para indicar que é clicável */
-  font-size: 16px; /* Tamanho da fonte do botão */
+  text-align: center;
 }
 
 .cardGrid {

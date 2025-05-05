@@ -1,29 +1,35 @@
+:root {
+  --footer-bg-color: #01112C;
+  --footer-border-color: #008F8C;
+  --footer-text-color: #ffffff;
+}
+
 .footer {
-  background-color: #01112C;
-  color: #ffffff;
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
   padding: 1rem;
   text-align: center;
-  border-top: 4px solid #008F8C;
+  border-top: 4px solid var(--footer-border-color);
   width: 100%; 
-  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
-  position: relative; /* Permite ajustes de posicionamento */
+  box-sizing: border-box; 
+  position: relative; 
   left: 0;
   bottom: 0;
   z-index: 1000;
 }
 
-/* Estilos responsivos */
+/* responsivos */
 @media (max-width: 768px) {
   .footer {
-    padding: 0.5rem; /* Reduz o padding em telas menores */
-    font-size: 0.9rem; /* Ajusta o tamanho da fonte para telas pequenas */
+    padding: 0.5rem; 
+    font-size: 0.9rem; 
   }
 }
 
 @media (max-width: 480px) {
   .footer {
-    padding: 0.5rem; /* Mantém o padding reduzido */
-    font-size: 0.8rem; /* Reduz ainda mais o tamanho da fonte */
-    text-align: center; /* Garante centralização em telas muito pequenas */
+    padding: 0.5rem; 
+    font-size: 0.8rem; 
+    text-align: center; 
   }
 }

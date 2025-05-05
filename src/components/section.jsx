@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./Section.module.css";
 import foto1 from "../assets/296288-linked-content-post-satelite-energia-renovavel-no-brasil-veja-a-situacao-atual-e-projecoes-futuras.jpg";
@@ -6,20 +6,43 @@ import foto2 from "../assets/tipos-de-energia-renovavel-e1633260980259.jpg";
 import Cards from './card';
 import Accordion from './accordion';
 import Button from './button';
-
+import buttonStyles from './button.module.css';
 
 export default function Section() {
-  const [showInfo, setShowInfo] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState({
+    showInfo: false,
+    showInfo_2: false,
+    showButton: false,
+    buttonBottom: 50,
+  });
 
-  const toggleInfo = () => {
-    setShowInfo(!showInfo);
-  }
+  const toggleState = (key) => {
+    setState((prevState) => ({ ...prevState, [key]: !prevState[key] }));
+  };
 
-  const [showInfo_2, setShowInfo_2] = useState(false);
-  const toggleInfo_2 = () => {
-    setShowInfo_2(!showInfo_2);
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      const footer = document.querySelector('footer');
+      const footerOffset = footer ? footer.offsetTop : document.body.scrollHeight;
+      const scrollPosition = window.scrollY + window.innerHeight;
+
+      if (window.scrollY > 300) {
+        setState((prevState) => ({ ...prevState, showButton: true }));
+      } else {
+        setState((prevState) => ({ ...prevState, showButton: false }));
+      }
+
+      if (scrollPosition >= footerOffset) {
+        const overlap = scrollPosition - footerOffset;
+        setState((prevState) => ({ ...prevState, buttonBottom: 50 + overlap }));
+      } else {
+        setState((prevState) => ({ ...prevState, buttonBottom: 50 }));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const materials = [
     {
@@ -125,7 +148,6 @@ export default function Section() {
               src={foto2}
               alt="foto2"
               className={`${styles.image} img-fluid rounded-pill border`}
-
             />
           </div>
         </div>
@@ -133,7 +155,6 @@ export default function Section() {
         <br /> <br />
         <br />
 
-        {/* Problemas e desafios */}
         <h2 className={styles.subtitle}>Alguns problemas e desafios atuais:</h2>
         <p className={styles.text}>
           <strong>1. Custo Elevado:</strong> Baterias de íon-lítio, por exemplo, ainda são caras, o que encarece carros elétricos e sistemas de energia doméstica.
@@ -144,31 +165,28 @@ export default function Section() {
         <p className={styles.text}>
           <strong>3. Extração de Materiais-Primas:</strong> Mineração de lítio, cobalto e níquel pode causar impactos ambientais e sociais significativos.
         </p>
-        {/* Botão para mostrar informações */}
+    
         <div className="text-center" id="servicos">
           <Button
-            text={showInfo ? 'Mostrar menos' : 'O que nós fazemos para mudar essa situação ?'}
-            onClick={toggleInfo}
+            text={state.showInfo ? 'Mostrar menos' : 'O que nós fazemos para mudar essa situação ?'}
+            onClick={() => toggleState('showInfo')}
             className="btn-success"
           />
         </div>
 
-        {/* Informações que aparecem ao clicar */}
         <div id="servicos" className="mt-4">
-          {showInfo && (
+          {state.showInfo && (
             <>
               <h2 className={styles.title}>Nossos Serviços</h2>
               <p className={styles.text}>
                 Oferecemos uma ampla gama de serviços, incluindo consultoria em energias renováveis, desenvolvimento de projetos de baterias sustentáveis e soluções personalizadas para atender às necessidades específicas de nossos clientes.
               </p>
 
-              {/* Adicionando os Cards */}
               <Cards />
 
               <h2 className={styles.subtitle}>Batérias Renováveis:</h2>
               <h4 className={styles.context}>Soluções Oferecidas Pelas Baterias Renováveis:</h4>
 
-              {/* Accordion */}
               <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header">
@@ -243,13 +261,13 @@ export default function Section() {
 
                 <div className="text-center" >
                   <Button
-                    text={showInfo_2 ? 'Mostrar menos' : 'Quer saber que materiais utilizamos na Vitaliant ?'}
-                    onClick={toggleInfo_2}
+                    text={state.showInfo_2 ? 'Mostrar menos' : 'Quer saber que materiais utilizamos na Vitaliant ?'}
+                    onClick={() => toggleState('showInfo_2')}
                     className="btn-success"
                   />
                 </div>
                 <div className="mt-4">
-                  {showInfo_2 && (
+                  {state.showInfo_2 && (
                     <>
                       <h2 className={styles.title}>Materiais Utilizados</h2>
                       <Accordion items={materials} parentId="accordionMaterials" />
@@ -260,6 +278,16 @@ export default function Section() {
             </>
           )}
         </div>
+
+        {state.showButton && (
+          <button
+            className={buttonStyles.backToTop}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            style={{ bottom: `${state.buttonBottom}px` }}
+          >
+            ↑ 
+          </button>
+        )}
       </section>
     </div>
   );
